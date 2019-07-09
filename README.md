@@ -1,15 +1,3 @@
-# Create React App
-
-In this example we will be deploying a simple "Hello World" example with Create React App.
-
-### Getting started with Create React App
-
-- Start a new Create React App project:
-
-```
-npx create-react-app <project name>
-```
-
 ### Deploy with Now
 
 First we need to create a `now.json` configuration file to instruct Now how to build the project.
