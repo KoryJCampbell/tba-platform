@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "qrcode.react": "^0.9.3",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
