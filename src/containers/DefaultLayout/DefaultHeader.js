@@ -36,7 +36,7 @@ class DefaultHeader extends Component {
             <Link to="/settings" className="nav-link">Settings</Link>
           </NavItem>         
           <NavItem className="px-3">
-            <NavLink to="/manage" className="nav-link">Manage Events</NavLink>
+            <NavLink to="/myevents" className="nav-link">Manage Events</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <NavLink to="/create" className="nav-link">Create Event</NavLink>

@@ -3,8 +3,6 @@ import React from 'react';
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
 const Create = React.lazy(() => import('./views/Create'));
-const Settings = React.lazy(() => import('./views/Settings'));
-const Manage = React.lazy(() => import('./views/Manage'));
 const Carousels = React.lazy(() => import('./views/Base/Carousels'));
 const Collapses = React.lazy(() => import('./views/Base/Collapses'));
 const Dropdowns = React.lazy(() => import('./views/Base/Dropdowns'));
@@ -38,7 +36,9 @@ const Typography = React.lazy(() => import('./views/Theme/Typography'));
 const Widgets = React.lazy(() => import('./views/Widgets/Widgets'));
 const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
-
+const MyEvents = React.lazy(() => import('./views/MyEvents'));
+const Settings = React.lazy(() => import('./views/Settings'));
+const Manage = React.lazy(() => import('./views/Manage'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -82,7 +82,8 @@ const routes = [
   { path: '/charts', name: 'Charts', component: Charts },
   { path: '/create', name: 'Create', component: Create },
   { path: '/settings', name: 'Settings', component: Settings },
-  { path: '/manage', name: 'Manage', component: Manage },
+  { path: '/myevents', name: 'MyEvents', component: MyEvents },
+  { path: '/manage', name: 'Manage  / ', component: Manage },
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];

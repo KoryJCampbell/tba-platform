@@ -35,25 +35,29 @@ class Create extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label htmlFor="datetime">Date of Event </Label>
+                  <Label htmlFor="datetime">Start Date </Label>
                 </Col>
-                <Col xs="12" md="9">
+                <Col md="3">
                   <Input type="date" id="date-input" name="date-input" placeholder="date" />
                 </Col>
-              </FormGroup>
-              <FormGroup row>
                 <Col md="3">
                   <Label htmlFor="datetime">Start Time</Label>
                 </Col>
-                <Col xs="12" md="9">
+                <Col md="3">
                   <Input type="time" id="time-input" name="time-input" placeholder="time" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
+                  <Label htmlFor="datetime">End Date</Label>
+                </Col>
+                <Col md="3">
+                  <Input type="date" id="date-input" name="date-input" placeholder="date" />
+                </Col>
+                <Col md="3">
                   <Label htmlFor="datetime">End Time</Label>
                 </Col>
-                <Col xs="12" md="9">
+                <Col md="3">
                   <Input type="time" id="time-input" name="time-input" placeholder="time" />
                 </Col>
               </FormGroup>
@@ -77,23 +81,10 @@ class Create extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label htmlFor="select">Select</Label>
-                </Col>
-                <Col xs="12" md="9">
-                  <Input type="select" name="select" id="select">
-                    <option value="0">Please select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                  </Input>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col md="3">
                   <Label htmlFor="selectSm">Event Type</Label>
                 </Col>
                 <Col xs="12" md="9">
-                  <Input type="select" name="selectSm" id="SelectLm" bsSize="sm">
+                  <Input type="select" name="select" id="Select">
                     <option value="" selected="selected">Select the type of event</option>
                     <option value="19">Appearance or Signing</option>
                     <option value="17">Attraction</option>
@@ -120,59 +111,24 @@ class Create extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label>Radios</Label>
-                </Col>
-                <Col md="9">
-                  <FormGroup check className="radio">
-                    <Input className="form-check-input" type="radio" id="radio1" name="radios" value="option1" />
-                    <Label check className="form-check-label" htmlFor="radio1">Option 1</Label>
-                  </FormGroup>
-                  <FormGroup check className="radio">
-                    <Input className="form-check-input" type="radio" id="radio2" name="radios" value="option2" />
-                    <Label check className="form-check-label" htmlFor="radio2">Option 2</Label>
-                  </FormGroup>
-                  <FormGroup check className="radio">
-                    <Input className="form-check-input" type="radio" id="radio3" name="radios" value="option3" />
-                    <Label check className="form-check-label" htmlFor="radio3">Option 3</Label>
-                  </FormGroup>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col md="3">
-                  <Label>Inline Radios</Label>
+                  <Label>Ticket Type</Label>
                 </Col>
                 <Col md="9">
                   <FormGroup check inline>
                     <Input className="form-check-input" type="radio" id="inline-radio1" name="inline-radios" value="option1" />
-                    <Label className="form-check-label" check htmlFor="inline-radio1">One</Label>
+                    <Label className="form-check-label" check htmlFor="inline-radio1">RSVP</Label>
                   </FormGroup>
                   <FormGroup check inline>
                     <Input className="form-check-input" type="radio" id="inline-radio2" name="inline-radios" value="option2" />
-                    <Label className="form-check-label" check htmlFor="inline-radio2">Two</Label>
+                    <Label className="form-check-label" check htmlFor="inline-radio2">Paid Ticket</Label>
                   </FormGroup>
                   <FormGroup check inline>
                     <Input className="form-check-input" type="radio" id="inline-radio3" name="inline-radios" value="option3" />
-                    <Label className="form-check-label" check htmlFor="inline-radio3">Three</Label>
+                    <Label className="form-check-label" check htmlFor="inline-radio3">Donation</Label>
                   </FormGroup>
                 </Col>
               </FormGroup>
-              <FormGroup row>
-                <Col md="3"><Label>Ticket/RSVP Type(s)</Label></Col>
-                <Col md="9">
-                  <FormGroup check className="checkbox">
-                    <Input className="form-check-input" type="checkbox" id="checkbox1" name="checkbox1" value="option1" />
-                    <Label check className="form-check-label" htmlFor="checkbox1">Free</Label>
-                  </FormGroup>
-                  <FormGroup check className="checkbox">
-                    <Input className="form-check-input" type="checkbox" id="checkbox2" name="checkbox2" value="option2" />
-                    <Label check className="form-check-label" htmlFor="checkbox2">Ticketed</Label>
-                  </FormGroup>
-                  <FormGroup check className="checkbox">
-                    <Input className="form-check-input" type="checkbox" id="checkbox3" name="checkbox3" value="option3" />
-                    <Label check className="form-check-label" htmlFor="checkbox3">Option 3</Label>
-                  </FormGroup>
-                </Col>
-              </FormGroup>
+        
               <FormGroup row>
                 <Col md="3">
                   <Label>Inline Checkboxes</Label>
