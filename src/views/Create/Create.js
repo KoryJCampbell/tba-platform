@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, CardColumns, CardHeader, Card, CardBody, CardFooter, FormGroup, Label, FormText, Badge,Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
 
-class Register extends Component {
+class Create extends Component {
   render() {
     return (
       <div className="animated fadeIn">
@@ -35,10 +35,26 @@ class Register extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label htmlFor="date-input">Date of Event </Label>
+                  <Label htmlFor="datetime">Date of Event </Label>
                 </Col>
                 <Col xs="12" md="9">
                   <Input type="date" id="date-input" name="date-input" placeholder="date" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Col md="3">
+                  <Label htmlFor="datetime">Start Time</Label>
+                </Col>
+                <Col xs="12" md="9">
+                  <Input type="time" id="time-input" name="time-input" placeholder="time" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Col md="3">
+                  <Label htmlFor="datetime">End Time</Label>
+                </Col>
+                <Col xs="12" md="9">
+                  <Input type="time" id="time-input" name="time-input" placeholder="time" />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -74,61 +90,31 @@ class Register extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label htmlFor="selectLg">Select Large</Label>
-                </Col>
-                <Col xs="12" md="9" size="lg">
-                  <Input type="select" name="selectLg" id="selectLg" bsSize="lg">
-                    <option value="0">Please select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                  </Input>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col md="3">
-                  <Label htmlFor="selectSm">Select Small</Label>
+                  <Label htmlFor="selectSm">Event Type</Label>
                 </Col>
                 <Col xs="12" md="9">
                   <Input type="select" name="selectSm" id="SelectLm" bsSize="sm">
-                    <option value="0">Please select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                    <option value="4">Option #4</option>
-                    <option value="5">Option #5</option>
-                  </Input>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col md="3">
-                  <Label htmlFor="disabledSelect">Disabled Select</Label>
-                </Col>
-                <Col xs="12" md="9">
-                  <Input type="select" name="disabledSelect" id="disabledSelect" disabled autoComplete="name">
-                    <option value="0">Please select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                  </Input>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col md="3">
-                  <Label htmlFor="multiple-select">Multiple select</Label>
-                </Col>
-                <Col md="9">
-                  <Input type="select" name="multiple-select" id="multiple-select" multiple>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                    <option value="4">Option #4</option>
-                    <option value="5">Option #5</option>
-                    <option value="6">Option #6</option>
-                    <option value="7">Option #7</option>
-                    <option value="8">Option #8</option>
-                    <option value="9">Option #9</option>
-                    <option value="10">Option #10</option>
+                    <option value="" selected="selected">Select the type of event</option>
+                    <option value="19">Appearance or Signing</option>
+                    <option value="17">Attraction</option>
+                    <option value="18">Camp, Trip, or Retreat</option>
+                    <option value="9">Class, Training, or Workshop</option>
+                    <option value="6">Concert or Performance</option>
+                    <option value="1">Conference</option>
+                    <option value="4">Convention</option>
+                    <option value="8">Dinner or Gala</option>
+                    <option value="5">Festival or Fair</option>
+                    <option value="14">Game or Competition</option>
+                    <option value="10">Meeting or Networking Event</option>
+                    <option value="100">Other</option>
+                    <option value="11">Party or Social Gathering</option>
+                    <option value="15">Race or Endurance Event</option>
+                    <option value="12">Rally</option>
+                    <option value="7">Screening</option>
+                    <option value="2">Seminar or Talk</option>
+                    <option value="16">Tour</option>
+                    <option value="13">Tournament</option>
+                    <option value="3">Tradeshow, Consumer Show, or Expo</option>
                   </Input>
                 </Col>
               </FormGroup>
@@ -171,15 +157,15 @@ class Register extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Col md="3"><Label>Checkboxes</Label></Col>
+                <Col md="3"><Label>Ticket/RSVP Type(s)</Label></Col>
                 <Col md="9">
                   <FormGroup check className="checkbox">
                     <Input className="form-check-input" type="checkbox" id="checkbox1" name="checkbox1" value="option1" />
-                    <Label check className="form-check-label" htmlFor="checkbox1">Option 1</Label>
+                    <Label check className="form-check-label" htmlFor="checkbox1">Free</Label>
                   </FormGroup>
                   <FormGroup check className="checkbox">
                     <Input className="form-check-input" type="checkbox" id="checkbox2" name="checkbox2" value="option2" />
-                    <Label check className="form-check-label" htmlFor="checkbox2">Option 2</Label>
+                    <Label check className="form-check-label" htmlFor="checkbox2">Ticketed</Label>
                   </FormGroup>
                   <FormGroup check className="checkbox">
                     <Input className="form-check-input" type="checkbox" id="checkbox3" name="checkbox3" value="option3" />
@@ -216,7 +202,7 @@ class Register extends Component {
               </FormGroup>
               <FormGroup row>
                 <Col md="3">
-                  <Label htmlFor="file-multiple-input">Multiple File input</Label>
+                  <Label htmlFor="file-multiple-input">Slideshow Images</Label>
                 </Col>
                 <Col xs="12" md="9">
                   <Input type="file" id="file-multiple-input" name="file-multiple-input" multiple />
@@ -249,4 +235,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Create;
