@@ -11,7 +11,7 @@ export default {
     },
     {
       title: true,
-      name: 'Theme',
+      name: 'Manage Events',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -19,25 +19,25 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Colors',
-      url: '/theme/colors',
+      name: 'Create Event',
+      url: '/create',
       icon: 'icon-drop',
     },
     {
-      name: 'Typography',
-      url: '/theme/typography',
+      name: 'Manage Events',
+      url: '/myevents',
       icon: 'icon-pencil',
     },
     {
       title: true,
-      name: 'Components',
+      name: 'Settings',
       wrapper: {
         element: '',
         attributes: {},
       },
     },
     {
-      name: 'Base',
+      name: 'Account Information',
       url: '/base',
       icon: 'icon-puzzle',
       children: [
@@ -151,7 +151,7 @@ export default {
       ],
     },
     {
-      name: 'Charts',
+      name: 'Team Members',
       url: '/charts',
       icon: 'icon-pie-chart',
     },
