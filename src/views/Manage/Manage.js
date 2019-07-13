@@ -7,17 +7,21 @@ class Manage extends Component {
     return (
       <div className="animated fadeIn">
       <Row>
-        <Col xs="12">
+        <Col xs="12" sm="6">
           <Card>
             <CardHeader>
               <strong>Company</strong>
               <small> Form</small>
             </CardHeader>
             <CardBody>
-              <FormGroup>
-                <Label htmlFor="company">Company</Label>
-                <Input type="text" id="company" placeholder="Enter your company name" />
-              </FormGroup>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label htmlFor="company">Company</Label>
+                    <Input type="text" id="company" placeholder="Enter your company name" />
+                  </FormGroup>
+                </Col>
+              </Row>
               <FormGroup>
                 <Label htmlFor="vat">VAT</Label>
                 <Input type="text" id="vat" placeholder="DE1234567890" />
