@@ -39,6 +39,7 @@ const User = React.lazy(() => import('./views/Users/User'));
 const MyEvents = React.lazy(() => import('./views/MyEvents'));
 const Settings = React.lazy(() => import('./views/Settings'));
 const Manage = React.lazy(() => import('./views/Manage'));
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },

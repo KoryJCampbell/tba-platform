@@ -6,9 +6,8 @@ export default class Checkout extends React.Component {
   onToken = (token, addresses) => {
     console.log("baby"+this.props.metadata)
     const body = {
-        amount: parseInt(this.props.price),
+        amount: this.props.metadata.total,
         token: token,
-        quantity: this.props.quantity,
         metadata: this.props.metadata
     }
     console.log(body)
@@ -26,11 +25,10 @@ export default class Checkout extends React.Component {
       <StripeCheckout
         stripeKey={process.env.STRIPE_CLIENT_PROD}
         token={this.onToken}
-        quantity={this.props.quantity}
-        amount={this.props.price ? parseInt(this.props.price): 0}
+        amount={this.props.metadata.total*100}
         billingAddress={true}
         description="Chicken & Mumbo Sauce"
-        image="/static/img/graph.png"
+        // image="/static/img/graph.png"
         locale="auto"
         name="Crank Karaoke"
       />

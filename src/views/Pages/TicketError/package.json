@@ -1,0 +1,6 @@
+{
+  "name": "TicketError",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./TicketError.js"
+}
