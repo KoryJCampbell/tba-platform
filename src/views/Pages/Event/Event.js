@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { Button, Card, CardBody, Container, Col,Fade, Media, ListGroup, ListGroupItem, ListGroupItemText,ListGroupItemHeading,Jumbotron, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, Nav, NavItem, NavbarBrand, Collapse, NavLink, NavbarToggler, DropdownMenu, DropdownToggle, Navbar, DropdownItem, Table, UncontrolledDropdown } from 'reactstrap';
-
+const StripeCheckout = lazy(() => import('../../Widgets/StripeCheckout'))
 
 class Event extends Component {  
   constructor(props) {
@@ -99,15 +99,17 @@ class Event extends Component {
           <Col>
             <p> 
               <i className="icon-location-pin icons font-2x lmt-4"></i>
-              <p>The 9:30 Club</p>
-              <p className="text-muted">815 V St NW, Washington, DC 20001</p>
+              <div>9:30 Club</div>
+              <p className="text-muted">815 V St NW <br />Washington, DC 20001</p>
             </p>
             <p><i className="icon-clock icons font-2x lmt-4"></i><p className="text-muted"> Doors open at 10pm </p></p>
-            <p className="lead">$15</p>
+            <p className="lead">$15.00</p>
             <hr className="my-2" />
             <Button color="secondary" size="lg" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Tickets</Button>
             <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
-            <Button color="success" size="lg" style={{ marginBottom: '1rem' }}>Checkout</Button>
+              {/* <Button color="success" size="lg" style={{ marginBottom: '1rem' }}>Checkout</Button> */}
+              <StripeCheckout />
+
             </Fade>
           </Col>
           </Row>
