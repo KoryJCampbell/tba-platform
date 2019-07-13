@@ -82,8 +82,8 @@ const routes = [
   { path: '/charts', name: 'Charts', component: Charts },
   { path: '/create', name: 'Create', component: Create },
   { path: '/settings', name: 'Settings', component: Settings },
-  { path: '/myevents', name: 'MyEvents', component: MyEvents },
-  { path: '/manage', name: 'Manage  / ', component: Manage },
+  { path: '/myevents', name: 'Manage Events', component: MyEvents },
+  { path: '/manage', name: 'Manage', component: Manage },
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];
