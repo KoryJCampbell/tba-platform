@@ -606,22 +606,23 @@ class Manage extends Component {
                         
                       </Col>
                       <Col sm="4">
+                        <div className="callout callout-info">
+                          <small className="text-muted">Total Balance</small>
+                          <br />
+                          <strong className="h4">$2,123</strong>
+                          <div className="chart-wrapper">
+                            <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
+                          </div>
+                        </div>
+                        
+                      </Col>
+                      <Col sm="4">
                         <div className="callout callout-warning">
                           <small className="text-muted">Pageviews</small>
                           <br />
                           <strong className="h4">78,623</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(2, brandWarning)} options={sparklineChartOpts} width={100} height={30} />
-                          </div>
-                        </div>
-                      </Col>
-                      <Col sm="4">
-                        <div className="callout callout-success">
-                          <small className="text-muted">Organic</small>
-                          <br />
-                          <strong className="h4">49,123</strong>
-                          <div className="chart-wrapper">
-                            <Line data={makeSparkLineData(3, brandSuccess)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
                         </div>
                       </Col>
@@ -639,6 +640,7 @@ class Manage extends Component {
                           <th>Date</th>
                           <th className="text-center">Payment Method</th>
                           <th>Total</th>
+                          <th className="text-center">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -668,8 +670,7 @@ class Manage extends Component {
                             <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>10 sec ago</strong>
+                            <strong>$12.54</strong>
                           </td>
                         </tr>
                         <tr>
@@ -698,8 +699,7 @@ class Manage extends Component {
                             <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>5 minutes ago</strong>
+                            <strong>$12.54</strong>
                           </td>
                         </tr>
                         <tr>
@@ -728,8 +728,7 @@ class Manage extends Component {
                             <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>1 hour ago</strong>
+                            <strong>$25.08</strong>
                           </td>
                         </tr>
                         <tr>
@@ -758,8 +757,7 @@ class Manage extends Component {
                             <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>Last month</strong>
+                            <strong>$12.54</strong>
                           </td>
                         </tr>
                         <tr>
@@ -788,8 +786,7 @@ class Manage extends Component {
                             <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>Last week</strong>
+                            <strong>$25.14</strong>
                           </td>
                         </tr>
                         <tr>
@@ -818,15 +815,19 @@ class Manage extends Component {
                             <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
                           </td>
                           <td>
-                            <div className="small text-muted">Last login</div>
-                            <strong>Yesterday</strong>
+                            <strong>$12.54</strong>
                           </td>
                         </tr>
                         </tbody>
                       </Table>
                   </Col>
+                  <Col>
+                    <br />
+                  </Col>
                   <Col xs="12" md="6" xl="6">
                     <hr className="mt-0" />
+                    <h4>Marketing</h4>
+
                     <ul>
                       <div className="progress-group">
                         <div className="progress-group-header">

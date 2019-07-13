@@ -38,7 +38,7 @@ class MyEvents extends Component {
                     <DropdownMenu right>
                       <DropdownItem href="#/manage">Manage</DropdownItem>
                       <DropdownItem>Edit</DropdownItem>
-                      <DropdownItem>View</DropdownItem>
+                      <DropdownItem href="#/event/342">View</DropdownItem>
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ListGroupItem>
