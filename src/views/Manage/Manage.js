@@ -484,8 +484,7 @@ class Manage extends Component {
 
     return (
       <div className="animated fadeIn">
-        <Row>
-          sd
+        {/* <Row>
           <Col>
             <Card>
               <CardBody>
@@ -540,9 +539,9 @@ class Manage extends Component {
               </CardFooter>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
 
-        <Row>
+        {/* <Row>
           <Col xs="6" sm="6" lg="3">
             <Suspense fallback={this.loading()}>
               <Widget03 dataBox={() => ({ variant: 'facebook', friends: '89k', feeds: '459' })} >
@@ -582,130 +581,31 @@ class Manage extends Component {
               </Widget03>
             </Suspense>
           </Col>
-        </Row>
+        </Row> */}
 
         <Row>
           <Col>
             <Card>
               <CardHeader>
-                Traffic {' & '} Sales
+                Crank Karaoke
               </CardHeader>
               <CardBody>
                 <Row>
                   <Col xs="12" md="6" xl="6">
+                  <h4>Traffic & Sales</h4> 
                     <Row>
-                      <Col sm="6">
+                      <Col sm="4">
                         <div className="callout callout-info">
-                          <small className="text-muted">New Clients</small>
+                          <small className="text-muted">Tickets Sold</small>
                           <br />
                           <strong className="h4">9,123</strong>
                           <div className="chart-wrapper">
                             <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
                           </div>
                         </div>
+                        
                       </Col>
-                      <Col sm="6">
-                        <div className="callout callout-danger">
-                          <small className="text-muted">Recurring Clients</small>
-                          <br />
-                          <strong className="h4">22,643</strong>
-                          <div className="chart-wrapper">
-                            <Line data={makeSparkLineData(1, brandDanger)} options={sparklineChartOpts} width={100} height={30} />
-                          </div>
-                        </div>
-                      </Col>
-                    </Row>
-                    <hr className="mt-0" />
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                          Monday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="34" />
-                        <Progress className="progress-xs" color="danger" value="78" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Tuesday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="56" />
-                        <Progress className="progress-xs" color="danger" value="94" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Wednesday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="12" />
-                        <Progress className="progress-xs" color="danger" value="67" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Thursday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="43" />
-                        <Progress className="progress-xs" color="danger" value="91" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Friday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="22" />
-                        <Progress className="progress-xs" color="danger" value="73" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Saturday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="53" />
-                        <Progress className="progress-xs" color="danger" value="82" />
-                      </div>
-                    </div>
-                    <div className="progress-group mb-4">
-                      <div className="progress-group-prepend">
-                        <span className="progress-group-text">
-                        Sunday
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <Progress className="progress-xs" color="info" value="9" />
-                        <Progress className="progress-xs" color="danger" value="69" />
-                      </div>
-                    </div>
-                    <div className="legend text-center">
-                      <small>
-                        <sup className="px-1"><Badge pill color="info">&nbsp;</Badge></sup>
-                        New clients
-                        &nbsp;
-                        <sup className="px-1"><Badge pill color="danger">&nbsp;</Badge></sup>
-                        Recurring clients
-                      </small>
-                    </div>
-                  </Col>
-                  <Col xs="12" md="6" xl="6">
-                    <Row>
-                      <Col sm="6">
+                      <Col sm="4">
                         <div className="callout callout-warning">
                           <small className="text-muted">Pageviews</small>
                           <br />
@@ -715,7 +615,7 @@ class Manage extends Component {
                           </div>
                         </div>
                       </Col>
-                      <Col sm="6">
+                      <Col sm="4">
                         <div className="callout callout-success">
                           <small className="text-muted">Organic</small>
                           <br />
@@ -726,6 +626,206 @@ class Manage extends Component {
                         </div>
                       </Col>
                     </Row>
+                    </Col>
+                    <Col> 
+                    <hr className="mt-0" />
+                    <h4>Recent Orders</h4>
+                      <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
+                        <thead className="thead-light">
+                        <tr>
+                          <th className="text-center">Order #</th>
+                          <th>Name</th>
+                          <th className="text-center">Quantity</th>
+                          <th>Date</th>
+                          <th className="text-center">Payment Method</th>
+                          <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td className="text-center">
+                            <div>
+                              <a href="#">2320</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Yiorgos Avraamu</div>
+                            <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>1</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                              <div>
+                                <small className="text-muted">Jun 11, 2019 - 11:48PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>10 sec ago</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-center">
+                          <div>
+                          <a href="#">2322</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Avram Tarasios</div>
+                            <div className="small text-muted">
+                            <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>1</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                            <div>
+                                <small className="text-muted">Jun 11, 2019 - 10:42PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>5 minutes ago</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-center">
+                          <div>
+                          <a href="#">2323</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Quintin Ed</div>
+                            <div className="small text-muted">
+                            <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>2</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                            <div>
+                                <small className="text-muted">Jun 11, 2019 - 09:39PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>1 hour ago</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-center">
+                          <div>
+                          <a href="#">2324</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Enéas Kwadwo</div>
+                            <div className="small text-muted">
+                            <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>1</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                            <div>
+                                <small className="text-muted">Jun 11, 2019 - 09:32PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>Last month</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-center">
+                          <div>
+                          <a href="#">2325</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Agapetus Tadeáš</div>
+                            <div className="small text-muted">
+                            <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>3</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                            <div>
+                                <small className="text-muted">Jun 11, 2019 - 06:32PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>Last week</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-center">
+                          <div>
+                          <a href="#">2327</a>
+                            </div>
+                          </td>
+                          <td>
+                            <div>Friderik Dávid</div>
+                            <div className="small text-muted">
+                            <span>freshlybreemed@gmail.com</span> 
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <div>1</div>
+                          </td>
+                          <td>
+                            <div className="clearfix">
+                            <div>
+                                <small className="text-muted">Jun 11, 2019 - 04:32PM EST</small>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="text-center">
+                            <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
+                          </td>
+                          <td>
+                            <div className="small text-muted">Last login</div>
+                            <strong>Yesterday</strong>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </Table>
+                  </Col>
+                  <Col xs="12" md="6" xl="6">
                     <hr className="mt-0" />
                     <ul>
                       <div className="progress-group">
@@ -793,6 +893,7 @@ class Manage extends Component {
                                 title="" data-original-title="show more"><i className="icon-options"></i></Button>
                       </div>
                     </ul>
+                    
                   </Col>
                 </Row>
                 <br />
