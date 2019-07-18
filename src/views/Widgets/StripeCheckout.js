@@ -1,6 +1,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios'
+require('now-env')
 
 export default class Checkout extends React.Component {
   onToken = (token, addresses) => {
@@ -11,7 +12,7 @@ export default class Checkout extends React.Component {
         metadata: this.props.metadata
     }
     console.log(body)
-    axios.post('/ticket', body).then(response => {
+    axios.post('/payments', body).then(response => {
         window.location = '/confirmation?email='+response.data.token.email
         console.log(response)
     }).catch(error =>{
@@ -21,9 +22,10 @@ export default class Checkout extends React.Component {
   };
 
   render() {
+    console.log("api "+process.env.STRIPE_CLIENT_DEV)
     return (
       <StripeCheckout
-        stripeKey={process.env.STRIPE_CLIENT_PROD}
+        stripeKey={process.env.STRIPE_CLIENT_DEV}
         token={this.onToken}
         amount={this.props.metadata.total*100}
         billingAddress={true}
