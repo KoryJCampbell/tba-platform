@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, CardColumns, CardHeader, Card, CardBody, CardFooter, FormGroup, Label, FormText, Badge,Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
+import { Button, CardHeader, Card, CardBody, CardFooter, FormGroup, Label, FormText, Badge,Col, Table, Container, Collapse, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import axios from 'axios'
 import PlacesAutocomplete from 'react-places-autocomplete';
 class Create extends Component {
@@ -9,6 +8,14 @@ class Create extends Component {
     super(props);
     this.state = {
       ready: false,
+      isOpen: false,
+      uploading: false,
+      currentTicketType: '',
+      currentTicketQuantity: 0,
+      currentTicketName: '',
+      currentTicketPrice: 0,
+      currentTicketDescription: '',
+      images: [],
       event: {
         title: "",
         description: "",
@@ -35,7 +42,7 @@ class Create extends Component {
         refundable: true,
         tags: "",
         ticketTypes: {
-          GA: {name: "GA", type: "paid", count: 0, price: 15, fees: 2.45, }
+          GA: {name: "GA", type: "paid", quantity: 0, price: 15, fees: 2.45, }
         },
         user: "",
         doorTime: "",
@@ -44,15 +51,81 @@ class Create extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.processUpload = this.processUpload.bind(this)
+    this.ticketCreation = this.ticketCreation.bind(this)
+    this.createTicket = this.createTicket.bind(this)
+    this.toggle = this.toggle.bind(this)
+
   }
   componentDidMount () {
     var set = () => this.setState({ready: true})
     const script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWqhUxBtnG59S2Lx47umesuG-NnLpMGSA&libraries=places";
     script.async = true;
     script.onload = set 
     document.body.appendChild(script)
+    console.log(process.env)
 
-}
+  }
+
+  // handleUploadFile(event) {
+  //   const url = `https://api.cloudinary.com/v1_1/dzsf703vh/image/upload`;
+  //   const fd = new FormData();
+  //   fd.append("upload_preset", unsignedUploadPreset);
+  //   fd.append("tags", ["browser_upload", "glitch"]); // Optional - add tag for image admin in Cloudinary
+  //   fd.append("file", event.target.files[0]);
+  //   const me = this;
+  //   const config = {
+  //     headers: { "X-Requested-With": "XMLHttpRequest" },
+  //     onUploadProgress: function(progressEvent) {
+  //       var progress = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
+  //       me.setState({progress});
+  //     }
+  //   };
+  //   axios.post(url, fd, config)
+  //     .then(function (res) {
+  //        console.log('res', res)
+  //       // File uploaded successfully
+  //       var response = res.data;
+  //       me.setState({progress:0, images: [...me.state.images, response.public_id]});
+  //     })
+  //     .catch(function (err) {
+  //       console.error('err', err);
+  //     });
+  // }
+  processUpload = async e => {
+    console.log(e.target.files[0])
+    // const image = await e.target.files[0]
+    // // upload the buffer as content
+    // const { url } = await upload("mYsxMZ5wiHgf2iwxL3QX0KHC", {
+    //   name: 'my-file.txt',
+    //   content: 'This is a file uploaded with now-storage.'
+    // }, { teamId: 'my-awsm-team' });
+    // console.log(url)
+    // return url;
+
+    const files = Array.from(e.target.files)
+    this.setState({ uploading: true })
+
+    const formData = new FormData()
+
+    files.forEach((file, i) => {
+      console.log(i)
+      formData.append("file", file)
+    })
+
+    axios(`/upload`, {
+      method: 'POST',
+      data: formData
+    })
+    .then(res => console.log(res))
+    .then(images => {
+      this.setState({ 
+        uploading: false,
+        images
+      })
+    })
+  }
   getDetailsForPlaceId(placeId) {
     return new Promise((resolve, reject) => {
       const placesService = new window.google.maps.places.PlacesService(document.createElement('div'));
@@ -132,7 +205,90 @@ class Create extends Component {
       console.log("AXIOS ERROR: ", err);
     })
   }
+  toggle(type) {
+    if (type !== "cancel" ) {
+      this.setState(state => ({ 
+        isOpen: true,
+        currentTicketType: type
+      }),()=>console.log(this.state.currentTicketType));
+    } else {
+      this.setState(state => ({ 
+        isOpen: !state.isOpen
+       }),()=>console.log(this.state));
+     }
+  }
+  // TODO: Add validators
+  ticketCreation(){
+    return (
+    <div> 
+      <FormGroup row>
+        <Col md="3">
+          <Label htmlFor="text-input">Name</Label>
+        </Col>
+        <Col xs="12" md="9">
+          <Input type="text" id="text-input" onChange={this.handleChange} name="currentTicketName" required/>
+          <FormText color="muted"></FormText>
+        </Col>
+      </FormGroup>
+      {this.state.currentTicketType !== "donation" ?
 
+      <FormGroup row>
+
+        <Col>
+          <Label htmlFor="text-input">Quantity</Label>
+        </Col>
+        <Col>
+          <Input type="text" id="text-input" onChange={this.handleChange} name="currentTicketQuantity" required/>
+          <FormText color="muted"></FormText>
+        </Col>
+      </FormGroup> : '' }
+      {this.state.currentTicketType === "paid" ?
+        <FormGroup row>
+          <Col md="3">
+            <Label htmlFor="text-input">Price</Label>
+          </Col>
+          <Col xs="12" md="9">
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>$</InputGroupText>
+              </InputGroupAddon>
+              <Input type="number" id="text-input" onChange={this.handleChange} name="currentTicketPrice"  required/>
+            </InputGroup>
+          </Col>
+        </FormGroup> : ''}
+      <FormGroup row>
+        <Col md="3">
+          <Label htmlFor="text-input">Ticket Description</Label>
+        </Col>
+        <Col xs="12" md="9">
+          <Input type="text" name="currentTicketDescription" onChange={this.handleChange} id="text-input" rows="9"
+                  placeholder="Include need-to-know information here...." required/>
+        </Col>
+        <Col>
+          <Button color="secondary" onClick={this.createTicket} size="md" >Save</Button>
+          <Button color="secondary" onClick={() => this.toggle("cancel")} size="md" >Cancel</Button>
+        </Col>
+      </FormGroup>
+    </div>
+    )
+  }
+  createTicket(){
+    const state = this.state
+    const currentTicketName = state.currentTicketName
+    var tickets = state.event.ticketTypes
+    tickets[currentTicketName] = {
+      name: state.currentTicketName, 
+      type: state.currentTicketType, 
+      quantity: parseInt(state.currentTicketQuantity), 
+      price: state.currentTicketPrice, 
+      fees: state.currentTicketPrice * .16
+    }
+    state.event.ticketTypes = tickets
+    this.setState({
+      state,
+      isOpen: !state.isOpen
+    },()=>console.log(this.state.event.ticketTypes))
+  }
   handleChange(evt) {
     if (evt.target.name.split('.').length>1){
       var obj = {...this.state}
@@ -147,8 +303,14 @@ class Create extends Component {
         }
         schema[pList[len-1]] = value;
       }
+      console.log(evt.target.name)
+      console.log(evt.target.value)
+      var ticketType = {}
+      if(evt.target.name.split('.')[0] + '.' + evt.target.name.split('.')[1] === "event.ticketTypes"){
+        
+      }
       set(evt.target.name, evt.target.value)
-      console.log(obj)
+      // console.log(obj)
       this.setState({ ...obj },()=> console.log(this.state));
     }
     else{
@@ -156,6 +318,7 @@ class Create extends Component {
     }
   }
   render() {
+
     return (
       <div className="animated fadeIn">
       <Row>
@@ -261,10 +424,10 @@ class Create extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Col md="3">
+                <Col >
                   <Label htmlFor="text-input">Event Organizer</Label>
                 </Col>
-                <Col xs="12" md="9">
+                <Col>
                   <Input type="text" id="text-input" onChange={this.handleChange} name="event.organizer" required/>
                   <FormText color="muted"></FormText>
                 </Col>
@@ -305,45 +468,29 @@ class Create extends Component {
                 </Col>
                 <Col md="9">
                   <FormGroup check inline>
-                    <Input className="form-check-input" type="radio" id="inline-radio1" name="inline-radios" value="option1" />
-                    <Label className="form-check-label" check htmlFor="inline-radio1">RSVP</Label>
+                    <Input className="form-check-input" onClick={() => this.toggle("rsvp")} type="radio" id="inline-radio1" name="inline-radios" value="option1" />
+                    <Label className="form-check-label"  check htmlFor="inline-radio1">RSVP</Label>
                   </FormGroup>
                   <FormGroup check inline>
-                    <Input className="form-check-input" type="radio" id="inline-radio2" name="inline-radios" value="option2" />
+                    <Input className="form-check-input" onClick={() => this.toggle("paid")}type="radio" id="inline-radio2" name="inline-radios" value="option2" />
                     <Label className="form-check-label" check htmlFor="inline-radio2">Paid Ticket</Label>
                   </FormGroup>
                   <FormGroup check inline>
-                    <Input className="form-check-input" type="radio" id="inline-radio3" name="inline-radios" value="option3" />
+                    <Input className="form-check-input" onClick={() => this.toggle("donation")} type="radio" id="inline-radio3" name="inline-radios" value="option3" />
                     <Label className="form-check-label" check htmlFor="inline-radio3">Donation</Label>
                   </FormGroup>
                 </Col>
               </FormGroup>
-        
-              <FormGroup row>
-                <Col md="3">
-                  <Label>Inline Checkboxes</Label>
-                </Col>
-                <Col md="9">
-                  <FormGroup check inline>
-                    <Input className="form-check-input" type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1" />
-                    <Label className="form-check-label" check htmlFor="inline-checkbox1">One</Label>
-                  </FormGroup>
-                  <FormGroup check inline>
-                    <Input className="form-check-input" type="checkbox" id="inline-checkbox2" name="inline-checkbox2" value="option2" />
-                    <Label className="form-check-label" check htmlFor="inline-checkbox2">Two</Label>
-                  </FormGroup>
-                  <FormGroup check inline>
-                    <Input className="form-check-input" type="checkbox" id="inline-checkbox3" name="inline-checkbox3" value="option3" />
-                    <Label className="form-check-label" check htmlFor="inline-checkbox3">Three</Label>
-                  </FormGroup>
-                </Col>
-              </FormGroup>
+              <Collapse isOpen={this.state.isOpen}>
+                <h4>Create Ticket</h4>
+                  {this.ticketCreation()}
+              </Collapse>
               <FormGroup row>
                 <Col md="3">
                   <Label htmlFor="file-input">Add event image</Label>
                 </Col>
                 <Col xs="12" md="9">
-                  <Input type="file" id="file-input" name="file-input" />
+                  <input type="file" id="file-input"  onChange={this.processUpload} name="file" />
                 </Col>
               </FormGroup>
               <FormGroup row>
