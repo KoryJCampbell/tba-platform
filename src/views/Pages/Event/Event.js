@@ -1,7 +1,6 @@
 import React, { Component, lazy } from 'react';
-import update from 'immutability-helper';
 import axios from 'axios'
-import { Button, Card, CardBody, Container, Col,Fade, Media, ListGroup, ListGroupItem, ListGroupItemText,ListGroupItemHeading,Jumbotron, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, Nav, NavItem, NavbarBrand, Collapse, NavLink, NavbarToggler, DropdownMenu, DropdownToggle, Navbar, DropdownItem, Table, UncontrolledDropdown } from 'reactstrap';const StripeCheckout = lazy(() => import('../../Widgets/StripeCheckout'))
+import { Button, Card, Col,Fade, Media, ListGroup, ListGroupItem, ListGroupItemText,ListGroupItemHeading,Jumbotron, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, Nav, NavItem, NavbarBrand, Collapse, NavLink, NavbarToggler, DropdownMenu, DropdownToggle, Navbar, DropdownItem, Table, UncontrolledDropdown } from 'reactstrap';const StripeCheckout = lazy(() => import('../../Widgets/StripeCheckout'))
 class Event extends Component {  
   constructor(props) {
   super(props);
@@ -39,7 +38,7 @@ class Event extends Component {
       refundable: true,
       tags: "fun, cheeks",
       ticketTypes: {
-        GA: {name: "GA", type: "paid", count: 0, price: 15, fees: 2.45, }
+        GA: {name: "GA", type: "paid", count: 0, quantity: 10, price: 15, fees: 2.45, }
       },
       title: "Chicken & Mumbo Sauce",
       user: "user",
@@ -75,7 +74,7 @@ class Event extends Component {
     for (var ticket in this.state.event.ticketTypes){
       ticket = this.state.event.ticketTypes[ticket]
       console.log(ticket)
-      total = total + ticket.count* (ticket.price+ticket.fees)
+      total = (total + ticket.count* (ticket.price+ticket.fees)).toFixed(2)
     }
     this.setState({total})
   }
@@ -128,6 +127,7 @@ class Event extends Component {
   }
   render() {
     let tickets, event;
+    console.log(this.state.total)
     if (this.state.isEventFetched) {
       event = this.state.event
       tickets = 
@@ -215,8 +215,8 @@ class Event extends Component {
                   <Button color="secondary" size="lg" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Tickets</Button>
                   <Fade in={this.state.fadeIn && this.state.collapse && this.state.quantity > 0} tag="h5" className="mt-3">
                     {/* <Button color="success" size="lg" style={{ marginBottom: '1rem' }}>Checkout</Button> */}
-                    <div>Total: ${this.state.total.toFixed(2)}</div>
-                    <StripeCheckout metadata={{ticketType: event.ticketTypes, total: this.state.total}}/>
+                    <div>Total: ${this.state.total}</div>
+                    <StripeCheckout metadata={{tickets: event.ticketTypes, total: this.state.total}}/>
                   </Fade>
                 </Col>
               </Row>
