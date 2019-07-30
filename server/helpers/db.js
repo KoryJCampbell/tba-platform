@@ -1,6 +1,7 @@
 // Import dependencies
 const MongoClient = require('mongodb').MongoClient
 const url = require('url')
+console.log(process.env)
 
 // Create cached connection variable
 let cachedDb = null

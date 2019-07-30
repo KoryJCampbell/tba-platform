@@ -1,4 +1,4 @@
-const connect = require("../db/index");
+const connect = require("./db");
 
 module.exports = async (req, res) => {
   // Set caching headers to serve stale content (if over a second old)
@@ -10,11 +10,10 @@ module.exports = async (req, res) => {
 
   // Select the "tba" collection from the database
   const collection = await database.collection('tba')
-  console.log(req.body)
-  console.log(process.env)
-  const {event} = req.body
+
+  // Select the users collection from the database
+  const event = await collection.find({}).toArray()
 
   // Respond with a JSON string of all users in the collection
-  await collection.insertOne(event)
-    res.json(event)
+  res.status(200).json(event)
 }

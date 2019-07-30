@@ -64,46 +64,10 @@ class Create extends Component {
     script.async = true;
     script.onload = set 
     document.body.appendChild(script)
-    console.log(process.env)
-
   }
 
-  // handleUploadFile(event) {
-  //   const url = `https://api.cloudinary.com/v1_1/dzsf703vh/image/upload`;
-  //   const fd = new FormData();
-  //   fd.append("upload_preset", unsignedUploadPreset);
-  //   fd.append("tags", ["browser_upload", "glitch"]); // Optional - add tag for image admin in Cloudinary
-  //   fd.append("file", event.target.files[0]);
-  //   const me = this;
-  //   const config = {
-  //     headers: { "X-Requested-With": "XMLHttpRequest" },
-  //     onUploadProgress: function(progressEvent) {
-  //       var progress = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-  //       me.setState({progress});
-  //     }
-  //   };
-  //   axios.post(url, fd, config)
-  //     .then(function (res) {
-  //        console.log('res', res)
-  //       // File uploaded successfully
-  //       var response = res.data;
-  //       me.setState({progress:0, images: [...me.state.images, response.public_id]});
-  //     })
-  //     .catch(function (err) {
-  //       console.error('err', err);
-  //     });
-  // }
   processUpload = async e => {
     console.log(e.target.files[0])
-    // const image = await e.target.files[0]
-    // // upload the buffer as content
-    // const { url } = await upload("mYsxMZ5wiHgf2iwxL3QX0KHC", {
-    //   name: 'my-file.txt',
-    //   content: 'This is a file uploaded with now-storage.'
-    // }, { teamId: 'my-awsm-team' });
-    // console.log(url)
-    // return url;
-
     const files = Array.from(e.target.files)
     this.setState({ uploading: true })
 
@@ -116,16 +80,16 @@ class Create extends Component {
 
     axios(`/upload`, {
       method: 'POST',
-      data: formData
+      data: formData,
     })
-    .then(res => console.log(res))
-    .then(images => {
-      this.setState({ 
-        uploading: false,
-        images
-      })
+    .then(res => {
+      console.log(res.data.url)
+      let event = this.state.event
+      event.image.cdnUri = res.data.url
+      this.setState({event}, ()=> console.log(this.state.event))
     })
   }
+
   getDetailsForPlaceId(placeId) {
     return new Promise((resolve, reject) => {
       const placesService = new window.google.maps.places.PlacesService(document.createElement('div'));
