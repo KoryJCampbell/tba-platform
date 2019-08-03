@@ -466,6 +466,11 @@ class Manage extends Component {
     };
   }
 
+  getData(){
+    //get recent tix data + balance, tix solds
+
+  }
+
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
@@ -631,193 +636,193 @@ class Manage extends Component {
                     <Col> 
                     <hr className="mt-0" />
                     <h4>Recent Orders</h4>
-                      <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
+                      <Table hover responsive className="table-outline mb-0 d-sm-table">
                         <thead className="thead-light">
-                        <tr>
-                          <th className="text-center">Order #</th>
-                          <th>Name</th>
-                          <th className="text-center">Quantity</th>
-                          <th>Date</th>
-                          <th className="text-center">Payment Method</th>
-                          <th>Total</th>
-                          <th className="text-center">Actions</th>
-                        </tr>
+                          <tr>
+                            <th className="text-center">Order #</th>
+                            <th>Name</th>
+                            <th className="text-center">Quantity</th>
+                            <th>Date</th>
+                            <th className="text-center">Payment Method</th>
+                            <th>Total</th>
+                            <th className="text-center">Actions</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <td className="text-center">
-                            <div>
-                              <a href="#">2320</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Yiorgos Avraamu</div>
-                            <div className="small text-muted">
-                              <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>1</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                          <tr>
+                            <td className="text-center">
                               <div>
-                                <small className="text-muted">Jun 11, 2019 - 11:48PM EST</small>
+                                <a href="#">2320</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$12.54</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                          <div>
-                          <a href="#">2322</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Avram Tarasios</div>
-                            <div className="small text-muted">
-                            <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>1</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                            </td>
+                            <td>
+                              <div>Yiorgos Avraamu</div>
+                              <div className="small text-muted">
+                                <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>1</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                                <div>
+                                  <small className="text-muted">Jun 11, 2019 - 11:48PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$12.54</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-center">
                             <div>
-                                <small className="text-muted">Jun 11, 2019 - 10:42PM EST</small>
+                            <a href="#">2322</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$12.54</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                          <div>
-                          <a href="#">2323</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Quintin Ed</div>
-                            <div className="small text-muted">
-                            <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>2</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                            </td>
+                            <td>
+                              <div>Avram Tarasios</div>
+                              <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>1</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                              <div>
+                                  <small className="text-muted">Jun 11, 2019 - 10:42PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$12.54</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-center">
                             <div>
-                                <small className="text-muted">Jun 11, 2019 - 09:39PM EST</small>
+                            <a href="#">2323</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$25.08</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                          <div>
-                          <a href="#">2324</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Enéas Kwadwo</div>
-                            <div className="small text-muted">
-                            <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>1</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                            </td>
+                            <td>
+                              <div>Quintin Ed</div>
+                              <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>2</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                              <div>
+                                  <small className="text-muted">Jun 11, 2019 - 09:39PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$25.08</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-center">
                             <div>
-                                <small className="text-muted">Jun 11, 2019 - 09:32PM EST</small>
+                            <a href="#">2324</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$12.54</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                          <div>
-                          <a href="#">2325</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Agapetus Tadeáš</div>
-                            <div className="small text-muted">
-                            <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>3</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                            </td>
+                            <td>
+                              <div>Enéas Kwadwo</div>
+                              <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>1</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                              <div>
+                                  <small className="text-muted">Jun 11, 2019 - 09:32PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$12.54</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-center">
                             <div>
-                                <small className="text-muted">Jun 11, 2019 - 06:32PM EST</small>
+                            <a href="#">2325</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$25.14</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                          <div>
-                          <a href="#">2327</a>
-                            </div>
-                          </td>
-                          <td>
-                            <div>Friderik Dávid</div>
-                            <div className="small text-muted">
-                            <span>freshlybreemed@gmail.com</span> 
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <div>1</div>
-                          </td>
-                          <td>
-                            <div className="clearfix">
+                            </td>
+                            <td>
+                              <div>Agapetus Tadeáš</div>
+                              <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>3</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                              <div>
+                                  <small className="text-muted">Jun 11, 2019 - 06:32PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$25.14</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-center">
                             <div>
-                                <small className="text-muted">Jun 11, 2019 - 04:32PM EST</small>
+                            <a href="#">2327</a>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-center">
-                            <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
-                          </td>
-                          <td>
-                            <strong>$12.54</strong>
-                          </td>
-                        </tr>
+                            </td>
+                            <td>
+                              <div>Friderik Dávid</div>
+                              <div className="small text-muted">
+                              <span>freshlybreemed@gmail.com</span> 
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <div>1</div>
+                            </td>
+                            <td>
+                              <div className="clearfix">
+                              <div>
+                                  <small className="text-muted">Jun 11, 2019 - 04:32PM EST</small>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center">
+                              <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
+                            </td>
+                            <td>
+                              <strong>$12.54</strong>
+                            </td>
+                          </tr>
                         </tbody>
                       </Table>
                   </Col>

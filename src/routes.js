@@ -39,6 +39,8 @@ const User = React.lazy(() => import('./views/Users/User'));
 const MyEvents = React.lazy(() => import('./views/MyEvents'));
 const Settings = React.lazy(() => import('./views/Settings'));
 const Manage = React.lazy(() => import('./views/Manage'));
+const PayoutSettings = React.lazy(() => import('./views/PayoutSettings'))
+const PayoutCreate = React.lazy(() => import('./views/PayoutCreate'))
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -83,6 +85,8 @@ const routes = [
   { path: '/charts', name: 'Charts', component: Charts },
   { path: '/create', name: 'Create', component: Create },
   { path: '/settings', name: 'Settings', component: Settings },
+  { path: '/payout-settings', name: 'Payout Settings', component: PayoutSettings },
+  { path: '/payout-create', name: 'Payout Setup', component: PayoutCreate },
   { path: '/myevents', name: 'Manage Events', component: MyEvents },
   { path: '/manage', name: 'Manage', component: Manage },
   { path: '/users', exact: true,  name: 'Users', component: Users },

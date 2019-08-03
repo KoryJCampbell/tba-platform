@@ -52,5 +52,44 @@ const ticketApi = async (req, res) => {
   };
   stripe.charges.create(body, stripeChargeCallback(res, data.token, data.quantity));
 };
+const balanceApi = async (req, res)  => { 
+  // Get events
+  var count = 0
+  console.log("Get Stripe Data")
+  var charges = []
+  await stripe.charges.list({limit: 100}).autoPagingEach(function(customer) {
+      // Do something with customer
+      count++
+      charges.push(customer)
+      console.log(customer)
+  })
+  send(res, 200,charges);
+}
+const bankValidation = async (res, req) => {
+  const bankInfo = await json(req)
+  stripe.tokens.create({
+    bank_account: {
+      country: 'US',
+      currency: 'usd',
+      account_holder_name: bankInfo.fullName,
+      account_holder_type: 'individual',
+      routing_number: bankInfo.routingNumber,
+      account_number: bankInfo.accountNumber
+    }
+  }, function(err, token) {
+    // asynchronously called
+  });
+}
 
-module.exports = ticketApi;
+const createAccount = async (req, res) => {
+  const account =  await stripe.accounts.create({
+    country: 'US',
+    type: 'custom',
+    requested_capabilities: ['card_payments'],
+  });
+  send(res, 200, account)
+}
+module.exports = {
+  ticketApi,
+  createAccount
+};

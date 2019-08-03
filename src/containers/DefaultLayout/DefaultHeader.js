@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { AppAsideToggler, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
+import { useAuth0 } from "../../react-auth0-wrapper";
+import { longStackSupport } from 'q';
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,12 +15,12 @@ const propTypes = {
 
 const defaultProps = {};
 
-class DefaultHeader extends Component {
-  render() {
-
+const DefaultHeader = (props) => {
+  console.log(process.env)
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+// 
     // eslint-disable-next-line
-    const { children, ...attributes } = this.props;
-
+    const { children, ...attributes } = props;
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
@@ -33,7 +35,7 @@ class DefaultHeader extends Component {
             <NavLink to="/dashboard" className="nav-link" >Home</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <Link to="/settings" className="nav-link">Settings</Link>
+            <Link to="/#/settings" className="nav-link">Settings</Link>
           </NavItem>         
           <NavItem className="px-3">
             <NavLink to="/myevents" className="nav-link">Manage Events</NavLink>
@@ -65,9 +67,18 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-comments"></i> Comments<Badge color="warning">42</Badge></DropdownItem>
               <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
               <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
-              <DropdownItem><a href="/settings"><i className="fa fa-wrench"></i> Settings </a></DropdownItem>
+              <DropdownItem><a href="/#/settings"><i className="fa fa-wrench"></i> Settings </a></DropdownItem>
               <DropdownItem><i className="fa fa-usd"></i> Payments<Badge color="secondary">42</Badge></DropdownItem>
               <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
+              <DropdownItem><i className="fa fa-file"></i><Link to="/external-api">External API</Link></DropdownItem>
+              <DropdownItem><i className="fa fa-file"></i>  {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)} {isAuthenticated && <button onClick={() => logout()}>Log out</button>}{isAuthenticated && (
+      <span>
+        <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+      </span>
+    )}
+
+</DropdownItem>
               <DropdownItem divider />
               {/* <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem> */}
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
@@ -78,7 +89,6 @@ class DefaultHeader extends Component {
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
       </React.Fragment>
     );
-  }
 }
 
 DefaultHeader.propTypes = propTypes;

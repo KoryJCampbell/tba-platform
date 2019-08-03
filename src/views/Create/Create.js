@@ -23,7 +23,7 @@ class Create extends Component {
         startDate: "",
         eventType: "",
         image: {
-          cdnUri: "/static/img/CRANK-event-1.png",
+          cdnUri: "",
           files: [""]
         }, 
         location: {
@@ -64,46 +64,10 @@ class Create extends Component {
     script.async = true;
     script.onload = set 
     document.body.appendChild(script)
-    console.log(process.env)
-
   }
 
-  // handleUploadFile(event) {
-  //   const url = `https://api.cloudinary.com/v1_1/dzsf703vh/image/upload`;
-  //   const fd = new FormData();
-  //   fd.append("upload_preset", unsignedUploadPreset);
-  //   fd.append("tags", ["browser_upload", "glitch"]); // Optional - add tag for image admin in Cloudinary
-  //   fd.append("file", event.target.files[0]);
-  //   const me = this;
-  //   const config = {
-  //     headers: { "X-Requested-With": "XMLHttpRequest" },
-  //     onUploadProgress: function(progressEvent) {
-  //       var progress = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-  //       me.setState({progress});
-  //     }
-  //   };
-  //   axios.post(url, fd, config)
-  //     .then(function (res) {
-  //        console.log('res', res)
-  //       // File uploaded successfully
-  //       var response = res.data;
-  //       me.setState({progress:0, images: [...me.state.images, response.public_id]});
-  //     })
-  //     .catch(function (err) {
-  //       console.error('err', err);
-  //     });
-  // }
   processUpload = async e => {
     console.log(e.target.files[0])
-    // const image = await e.target.files[0]
-    // // upload the buffer as content
-    // const { url } = await upload("mYsxMZ5wiHgf2iwxL3QX0KHC", {
-    //   name: 'my-file.txt',
-    //   content: 'This is a file uploaded with now-storage.'
-    // }, { teamId: 'my-awsm-team' });
-    // console.log(url)
-    // return url;
-
     const files = Array.from(e.target.files)
     this.setState({ uploading: true })
 
@@ -116,16 +80,19 @@ class Create extends Component {
 
     axios(`/upload`, {
       method: 'POST',
-      data: formData
+      data: formData,
     })
-    .then(res => console.log(res))
-    .then(images => {
-      this.setState({ 
-        uploading: false,
-        images
-      })
+    .then(res => {
+      console.log(res.data.url)
+      let event = this.state.event
+      event.image.cdnUri = res.data.url
+      this.setState({event, uploading: false})
+    })
+    .catch(err =>{
+      this.setState({uploading: false})
     })
   }
+
   getDetailsForPlaceId(placeId) {
     return new Promise((resolve, reject) => {
       const placesService = new window.google.maps.places.PlacesService(document.createElement('div'));
@@ -192,11 +159,10 @@ class Create extends Component {
   };
   handleSubmit(e) {
     e.preventDefault();
-    axios({
-      method: 'post',
-      url: '/create',
+    axios('https://tba.freshlybreemed.now.sh/event',{
+      method: 'POST',
       data: {
-          "event": {...this.state}
+          "event": {...this.state.event}
       },
     }).then((res) => {
       console.log("RESPONSE RECEIVED: ", res);
@@ -265,7 +231,7 @@ class Create extends Component {
                   placeholder="Include need-to-know information here...." required/>
         </Col>
         <Col>
-          <Button color="secondary" onClick={this.createTicket} size="md" >Save</Button>
+          <Button disabled color="secondary" onClick={this.createTicket} size="md" >Save</Button>
           <Button color="secondary" onClick={() => this.toggle("cancel")} size="md" >Cancel</Button>
         </Col>
       </FormGroup>
@@ -515,7 +481,9 @@ class Create extends Component {
             </Form>
           </CardBody>
           <CardFooter>
-            <Button onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            {this.state.uploading? 
+            <Button disabled onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>:
+            <Button onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>}
             <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
           </CardFooter>
         </Card>

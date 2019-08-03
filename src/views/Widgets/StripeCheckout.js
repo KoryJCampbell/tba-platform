@@ -5,7 +5,7 @@ import axios from 'axios'
 export default class Checkout extends React.Component {
   onToken = (token, addresses) => {
     console.log(this.props.metadata)
-    const meta = this.props.metadata.tickets[Object.keys(this.props.metadata.tickets)] + ',' + this.props.metadata.tickets[Object.keys(this.props.metadata.tickets)].count
+    // const meta = this.props.metadata.tickets[Object.keys(this.props.metadata.tickets)] + ',' + this.props.metadata.tickets[Object.keys(this.props.metadata.tickets)].count
     // TODO: metadata
     const body = {
         amount: this.props.metadata.total*100,

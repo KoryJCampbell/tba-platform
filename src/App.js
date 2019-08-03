@@ -3,10 +3,16 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import './App.scss';
 
+// Components
+import Profile from "./components/Profile";
+import PrivateRoute from "./components/PrivateRoute";
+import ExternalApi from "./components/ExternalApi";
+
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'));
+
 
 // Pages
 const Login = React.lazy(() => import('./views/Pages/Login'));
@@ -25,6 +31,8 @@ class App extends Component {
       <HashRouter>
           <React.Suspense fallback={loading()}>
             <Switch>
+              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/external-api" component={ExternalApi} />
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
               <Route exact path="/ticket/:id" name="Ticket" render={props => <Ticket {...props}/>} />

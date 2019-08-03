@@ -1,6 +1,8 @@
-const connect = require("../db/index");
+const connect = require("./db");
+const cors = require('micro-cors')()
+const {createError, send, json} = require('micro')
 
-module.exports = async (req, res) => {
+const create = async (req, res) => {
   // Set caching headers to serve stale content (if over a second old)
   // while revalidating fresh content in the background
   res.setHeader('cache-control', 's-maxage=1 maxage=0, stale-while-revalidate')
@@ -10,10 +12,12 @@ module.exports = async (req, res) => {
 
   // Select the "tba" collection from the database
   const collection = await database.collection('tba')
-
-  // Select the users collection from the database
-  const event = await collection.find({}).toArray()
+  console.log(req.body)
+  const {event} = req.body
 
   // Respond with a JSON string of all users in the collection
-  res.status(200).json(event)
+  await collection.insertOne(event)
+
+  send(res, 200, event)
 }
+module.exports = { create }
