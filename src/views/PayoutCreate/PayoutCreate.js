@@ -107,6 +107,18 @@ class PayoutCreate extends Component {
                   <FormText color="muted">Enter a valid account number</FormText>
                 </Col>
               </FormGroup>
+              <FormGroup row>
+                <Col md="3">
+                  <Label htmlFor="number-input">Business Type</Label>
+                </Col>
+                <Col xs="12" md="9">
+                <Input type="select" name="businessType" onChange={this.handleChange} id="Select">
+                    <option value="" selected="selected">Select the type of business</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Company">Company</option>
+                  </Input>
+                </Col>
+              </FormGroup>
             </Form>
           </CardBody>
           <CardFooter>

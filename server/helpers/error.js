@@ -15,4 +15,4 @@ const handleErrors = fn => async (req, res) => {
 
 module.exports = {
   handleErrors
-}
+}   

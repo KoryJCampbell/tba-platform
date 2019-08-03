@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { AppAsideToggler, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
+import { useAuth0 } from "../../react-auth0-wrapper";
+import { longStackSupport } from 'q';
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,12 +15,12 @@ const propTypes = {
 
 const defaultProps = {};
 
-class DefaultHeader extends Component {
-  render() {
-
+const DefaultHeader = (props) => {
+  console.log(process.env)
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+// 
     // eslint-disable-next-line
-    const { children, ...attributes } = this.props;
-
+    const { children, ...attributes } = props;
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
@@ -68,6 +70,15 @@ class DefaultHeader extends Component {
               <DropdownItem><a href="/#/settings"><i className="fa fa-wrench"></i> Settings </a></DropdownItem>
               <DropdownItem><i className="fa fa-usd"></i> Payments<Badge color="secondary">42</Badge></DropdownItem>
               <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
+              <DropdownItem><i className="fa fa-file"></i><Link to="/external-api">External API</Link></DropdownItem>
+              <DropdownItem><i className="fa fa-file"></i>  {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)} {isAuthenticated && <button onClick={() => logout()}>Log out</button>}{isAuthenticated && (
+      <span>
+        <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+      </span>
+    )}
+
+</DropdownItem>
               <DropdownItem divider />
               {/* <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem> */}
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
@@ -78,7 +89,6 @@ class DefaultHeader extends Component {
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
       </React.Fragment>
     );
-  }
 }
 
 DefaultHeader.propTypes = propTypes;

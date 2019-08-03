@@ -23,7 +23,7 @@ class Create extends Component {
         startDate: "",
         eventType: "",
         image: {
-          cdnUri: "/static/img/CRANK-event-1.png",
+          cdnUri: "",
           files: [""]
         }, 
         location: {
@@ -86,7 +86,10 @@ class Create extends Component {
       console.log(res.data.url)
       let event = this.state.event
       event.image.cdnUri = res.data.url
-      this.setState({event}, ()=> console.log(this.state.event))
+      this.setState({event, uploading: false})
+    })
+    .catch(err =>{
+      this.setState({uploading: false})
     })
   }
 
@@ -156,11 +159,10 @@ class Create extends Component {
   };
   handleSubmit(e) {
     e.preventDefault();
-    axios({
-      method: 'post',
-      url: '/create',
+    axios('https://tba.freshlybreemed.now.sh/event',{
+      method: 'POST',
       data: {
-          "event": {...this.state}
+          "event": {...this.state.event}
       },
     }).then((res) => {
       console.log("RESPONSE RECEIVED: ", res);
@@ -229,7 +231,7 @@ class Create extends Component {
                   placeholder="Include need-to-know information here...." required/>
         </Col>
         <Col>
-          <Button color="secondary" onClick={this.createTicket} size="md" >Save</Button>
+          <Button disabled color="secondary" onClick={this.createTicket} size="md" >Save</Button>
           <Button color="secondary" onClick={() => this.toggle("cancel")} size="md" >Cancel</Button>
         </Col>
       </FormGroup>
@@ -479,7 +481,9 @@ class Create extends Component {
             </Form>
           </CardBody>
           <CardFooter>
-            <Button onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            {this.state.uploading? 
+            <Button disabled onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>:
+            <Button onClick={this.handleSubmit} type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>}
             <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
           </CardFooter>
         </Card>
