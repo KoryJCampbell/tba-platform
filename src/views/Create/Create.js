@@ -78,7 +78,7 @@ class Create extends Component {
       formData.append("file", file)
     })
 
-    await axios(`https://create-react-app-igyfkrflld.now.sh/upload`, {
+    await axios(`https://tba.koryjcampbell.now.sh/upload`, {
       method: 'POST',
       data: formData,
     })
@@ -160,7 +160,7 @@ class Create extends Component {
   };
   handleSubmit(e) {
     e.preventDefault();
-    axios('https://create-react-app-igyfkrflld.now.sh/event',{
+    axios('https://tba.koryjcampbell.now.sh/event',{
       method: 'POST',
       data: {
           "event": {...this.state.event}
