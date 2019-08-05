@@ -472,7 +472,7 @@ class Manage extends Component {
   }
   getData(){
     //get recent tix data + balance, tix solds
-    axios.get('tba.koryjcampbell.now.sh/api/balance')
+    axios.get('https://create-react-app-igyfkrflld.now.sh/api/balance')
     .then(res=>{
       console.log(res)
     }).catch(err=>{
