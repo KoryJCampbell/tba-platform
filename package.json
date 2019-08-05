@@ -48,6 +48,7 @@
     "reactstrap": "^8.0.0",
     "simple-line-icons": "^2.4.1",
     "stripe": "^7.4.0",
+    "twilio": "^3.33.2",
     "us-bank-account-validator": "^0.1.0"
   },
   "scripts": {

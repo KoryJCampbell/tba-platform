@@ -78,7 +78,7 @@ class Create extends Component {
       formData.append("file", file)
     })
 
-    await axios(`https://tba.freshlybreemed.now.sh/upload`, {
+    await axios(`tba.koryjcampbell.now.sh/upload`, {
       method: 'POST',
       data: formData,
     })
@@ -160,7 +160,7 @@ class Create extends Component {
   };
   handleSubmit(e) {
     e.preventDefault();
-    axios('https://tba.freshlybreemed.now.sh/event',{
+    axios('https://tba.koryjcampbell.now.sh',{
       method: 'POST',
       data: {
           "event": {...this.state.event}
