@@ -1,5 +1,7 @@
-var cloudinary = require("cloudinary").v2;                                               
+var cloudinary = require("cloudinary").v2; 
+const connect = require("./db");
 var multiparty = require('multiparty');
+var cors = require('micro-cors')()
 var util = require('util');
 // if (!config.bucket_name) throw new Error('Please check your configuration!')
 
@@ -44,5 +46,5 @@ const postS3 = async (req, res) => {
   });
 }
 module.exports = {
-  postS3
+  postS3: cors(postS3)
 }

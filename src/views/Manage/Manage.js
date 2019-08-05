@@ -1,5 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
+import axios from 'axios'
 import {
   Badge,
   Button,
@@ -459,15 +460,24 @@ class Manage extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+    this.getData = this.getData.bind(this)
 
     this.state = {
       dropdownOpen: false,
       radioSelected: 2,
     };
   }
-
+  componentDidMount(){
+    this.getData()
+  }
   getData(){
     //get recent tix data + balance, tix solds
+    axios.get('https://tba.freshlybreemed.now.sh/api/balance')
+    .then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
 
   }
 
@@ -599,6 +609,17 @@ class Manage extends Component {
                   <Col xs="12" md="6" xl="6">
                   <h4>Traffic & Sales</h4> 
                     <Row>
+                      <Col sm="4">
+                        <div className="callout callout-info">
+                          <small className="text-muted">Tickets Sold</small>
+                          <br />
+                          <strong className="h4">9,123</strong>
+                          <div className="chart-wrapper">
+                            <Line data={makeSparkLineData(0, brandPrimary)} options={sparklineChartOpts} width={100} height={30} />
+                          </div>
+                        </div>
+                        
+                      </Col>
                       <Col sm="4">
                         <div className="callout callout-info">
                           <small className="text-muted">Tickets Sold</small>
@@ -825,6 +846,7 @@ class Manage extends Component {
                           </tr>
                         </tbody>
                       </Table>
+                      <a href="/">View More...</a>
                   </Col>
                   <Col>
                     <br />

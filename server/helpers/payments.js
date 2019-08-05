@@ -1,6 +1,9 @@
 const { json, send } = require("micro");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_DEV);
 const axios = require("axios");
+const connect = require("./db");
+const redirect = require('micro-redirect')
+var cors = require('micro-cors')()
 
 const dispatchTicket = (token, quantity) => {
   const headers = {
@@ -38,7 +41,7 @@ const stripeChargeCallback = (res, token, quantity) => async (err, charge) => {
     // TODO: handle flow of dispatch ticket failing
     // console.log(token)
     // await dispatchTicket(token, quantity);
-    send(res, 200, { success: charge, token: token });
+    redirect(res, 200, '/event/877/confirmation')
   }
 };
 const ticketApi = async (req, res) => {
@@ -50,8 +53,30 @@ const ticketApi = async (req, res) => {
     currency: "usd",
     metadata: data.metadata
   };
-  stripe.charges.create(body, stripeChargeCallback(res, data.token, data.quantity));
+  const account = {
+    stripe_account: "acct_1F3F3UEhNU9azNgf",
+  }
+  stripe.charges.create(body, account, stripeChargeCallback(res, data.token, data.quantity));
 };
+const updateAndSaveApi = async (res, list) => {
+
+   // Connect to MongoDB and get the database
+   const database = await connect()
+
+   // Select the "tba" collection from the database
+   const collection = await database.collection('eventList')
+  //  console.log(list)
+   const event = list
+ 
+   // Respond with a JSON string of all users in the collection
+   try {
+    let result = await collection.insertMany(event)
+     send(res, 200,result);
+   } catch(err) {
+     console.log(err)
+   }
+   
+}
 const balanceApi = async (req, res)  => { 
   // Get events
   var count = 0
@@ -63,7 +88,7 @@ const balanceApi = async (req, res)  => {
       charges.push(customer)
       console.log(customer)
   })
-  send(res, 200,charges);
+  updateAndSaveApi(res, charges)
 }
 const bankValidation = async (res, req) => {
   const bankInfo = await json(req)
@@ -91,5 +116,6 @@ const createAccount = async (req, res) => {
 }
 module.exports = {
   ticketApi,
-  createAccount
+  createAccount,
+  balanceApi : cors(balanceApi)
 };
