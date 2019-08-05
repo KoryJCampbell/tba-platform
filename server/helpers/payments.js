@@ -3,10 +3,19 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_DEV);
 const axios = require("axios");
 const connect = require("./db");
 const redirect = require('micro-redirect')
-const accountSid = (process.env.TWILIO_ACCOUNT_SID);
-const authToken = (process.env.TWILIO_AUTH_TOKEN);
+const accountSid = 'ACb9be781cb58b923dc7d5d3a1465363ff';
+const authToken = 'a4450d8dec4fd1db3a3a9498668c60e0';
 const client = require('twilio')(accountSid, authToken);
 var cors = require('micro-cors')()
+
+//Send Message To User On Successful Payment of Ticket
+  client.messages
+  .create({
+     body: 'You have successfully paid for a ticket!',
+     from: '+12055399957',
+     to: '+12024307929'
+   })
+  .then(message => console.log(message.sid));
 
 const dispatchTicket = (token, quantity) => {
   const headers = {
@@ -28,14 +37,6 @@ const dispatchTicket = (token, quantity) => {
       },
       headers: headers
     }).then((ticket)=>{
-      // Sends Message To User On Successful Ticket Purchase
-      client.messages
-      .create({
-        body: 'You have successfully paid for a ticket!',
-        from: '+12055399957',
-        to: '+12024307929'
-      })
-    .then(message => console.log(message.sid));
       console.log(ticket.data)
     }).catch((err)=>{
       console.log(err)
