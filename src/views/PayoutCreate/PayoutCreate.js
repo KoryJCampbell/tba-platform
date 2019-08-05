@@ -119,6 +119,27 @@ class PayoutCreate extends Component {
                   </Input>
                 </Col>
               </FormGroup>
+              <FormGroup row>
+                <Col md="3">
+                  <Label htmlFor="number-input">Date Of Birth</Label>
+                </Col>
+                <Col xs="12" md="9">
+                  <Input type="date" id="date-input" name="dob" onChange={this.handleChange} placeholder="time" required/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Col md="3">
+                  <Label htmlFor="number-input">Last four digits of SSN</Label>
+                </Col>
+                <Col xs="12" md="9">
+                <Input
+                  type="number"
+                  name="number"
+                  id="exampleNumber"
+                  placeholder="number placeholder"
+                />                  {/* <FormText color="muted">Enter a valid SSN</FormText> */}
+                </Col>
+              </FormGroup>
             </Form>
           </CardBody>
           <CardFooter>

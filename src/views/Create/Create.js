@@ -78,14 +78,15 @@ class Create extends Component {
       formData.append("file", file)
     })
 
-    axios(`/upload`, {
+    await axios(`https://tba.freshlybreemed.now.sh/upload`, {
       method: 'POST',
       data: formData,
     })
     .then(res => {
-      console.log(res.data.url)
       let event = this.state.event
       event.image.cdnUri = res.data.url
+      let link = "https:"+event.image.cdnUri.split(':')[1]  
+      console.log(link)
       this.setState({event, uploading: false})
     })
     .catch(err =>{

@@ -2,7 +2,7 @@
 const { handleErrors } = require('../helpers/error')
 const { postS3 } = require('../helpers/upload')
 const { create } = require('../helpers/create')
-const { createAccount, ticketApi } = require('../helpers/payments')
+const { createAccount, ticketApi, balanceApi } = require('../helpers/payments')
 const { send } = require('micro')
 
 const postApi = fn => async (req, res) => {
@@ -16,8 +16,9 @@ const postApi = fn => async (req, res) => {
         case "/account":
           return await fn(createAccount(req,res))
         case "/payments":
-          return await fn(ticketApi(req,res))
-        
+          return await fn(ticketApi(req,res))  
+        case "/balance":
+          return await fn(balanceApi(req,res))
         default:
           return send(res, 200, {"err":"invalid route"})
       }

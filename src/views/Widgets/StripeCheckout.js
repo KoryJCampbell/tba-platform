@@ -13,7 +13,8 @@ export default class Checkout extends React.Component {
     }
     console.log(body)
     axios.post('/payments', body).then(response => {
-        window.location = '/confirmation?email='+response.data.token.email
+        window.location = '#'+response.headers.location
+        // window.location = '/confirmation?email='+response.data.token.email
         console.log(response)
     }).catch(error =>{
         console.log("Payment Error: ", error);
